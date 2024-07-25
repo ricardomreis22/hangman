@@ -104,10 +104,9 @@ function App() {
         {isLoser && "Nice try!"}
       </div>
       <div>
-        <button onClick={getALetter} style={{}}>
+        <button disabled={isWinner || isLoser} onClick={getALetter} style={{}}>
           A correct letter
         </button>
-        <button style={{}}>Remove 5 letters</button>
       </div>
 
       <HangmanDrawing numOfIncorrectGuesses={incorrectLetters.length} />
