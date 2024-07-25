@@ -85,6 +85,13 @@ function App() {
     setGuessedLetters((prev) => [...prev, letterGiven]);
   }
 
+  // function to start a new game
+
+  function newGame() {
+    setGuessedLetters([]);
+    setWordToGuess(getWord());
+  }
+
   const inactiveLetters = incorrectLetters.concat(lettersRemoved);
 
   return (
@@ -102,6 +109,10 @@ function App() {
         {!isWinner && !isLoser && "Hangman"}
         {isWinner && "Winner"}
         {isLoser && "Nice try!"}
+      </div>
+      <div>
+        {" "}
+        <button onClick={newGame}>New game</button>
       </div>
       <div>
         <button disabled={isWinner || isLoser} onClick={getALetter} style={{}}>
