@@ -1,9 +1,12 @@
 import words from "./wordList.json";
 
 import { useCallback, useEffect, useState } from "react";
-import HangmanDrawing from "./HangmanDrawing";
-import HangmanWord from "./HangmanWord";
-import Keyboard from "./Keyboard";
+
+import "./global.css";
+
+import HangmanDrawing from "./components/HangmanDrawing";
+import HangmanWord from "./components/HangmanWord";
+import Keyboard from "./components/Keyboard";
 
 function getWord() {
   return words[Math.floor(Math.random() * words.length)];
@@ -115,7 +118,12 @@ function App() {
         <button onClick={newGame}>New game</button>
       </div>
       <div>
-        <button disabled={isWinner || isLoser} onClick={getALetter} style={{}}>
+        <button
+          className="button"
+          disabled={isWinner || isLoser}
+          onClick={getALetter}
+          style={{}}
+        >
           A correct letter
         </button>
       </div>
