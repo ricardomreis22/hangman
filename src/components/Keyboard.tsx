@@ -43,7 +43,7 @@ const Keyboard = ({
   addGuessedLetter,
 }: KeyboardProps) => {
   return (
-    <div className="grid grid-cols-auto-fit-75 gap-2">
+    <div className="grid grid-cols-10 gap-2">
       {KEYS.map((key) => {
         const isActive = activeLetter.includes(key);
         const isInactive = inactiveLetters.includes(key);
