@@ -11,16 +11,7 @@ const HangmanWord = ({
   reveal = false,
 }: HangmanWordProps) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "0.25em",
-        fontSize: "6rem",
-        fontWeight: "bold",
-        textTransform: "uppercase",
-        fontFamily: "monospace",
-      }}
-    >
+    <div className="flex gap-[0.25em] text-[6rem] font-bold uppercase font-mono">
       {wordToGuess.split("").map((letter, index) => (
         <span style={{ borderBottom: "0.1em solid black" }} key={index}>
           <span

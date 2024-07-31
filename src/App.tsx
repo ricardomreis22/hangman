@@ -2,7 +2,7 @@ import words from "./wordList.json";
 
 import { useCallback, useEffect, useState } from "react";
 
-import "./global.css";
+import "../global.css";
 
 import HangmanDrawing from "./components/HangmanDrawing";
 import HangmanWord from "./components/HangmanWord";
@@ -98,17 +98,8 @@ function App() {
   const inactiveLetters = incorrectLetters.concat(lettersRemoved);
 
   return (
-    <div
-      style={{
-        maxWidth: "800px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "2rem",
-        margin: "0 auto",
-        alignItems: "center",
-      }}
-    >
-      <div style={{ fontSize: "2rem", textAlign: "center", margin: "2rem" }}>
+    <div className="max-w-[800px] flex flex-col gap-2 my-0 mx-auto items-center">
+      <div className="text-sm text-center m-2">
         {!isWinner && !isLoser && "Hangman"}
         {isWinner && "Winner"}
         {isLoser && "Nice try!"}
@@ -134,7 +125,7 @@ function App() {
         wordToGuess={wordToGuess}
         reveal={isLoser}
       />
-      <div style={{ alignSelf: "stretch" }}>
+      <div className="flex">
         <Keyboard
           activeLetter={guessedLetters.filter((letter) =>
             wordToGuess.includes(letter)
