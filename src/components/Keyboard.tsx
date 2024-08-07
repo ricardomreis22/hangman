@@ -43,14 +43,14 @@ const Keyboard = ({
   addGuessedLetter,
 }: KeyboardProps) => {
   return (
-    <div className="grid grid-cols-10 gap-2">
+    <div className="grid grid-cols-9 gap-2 mt-10">
       {KEYS.map((key) => {
         const isActive = activeLetter.includes(key);
         const isInactive = inactiveLetters.includes(key);
         return (
           <button
             onClick={() => addGuessedLetter(key)}
-            className={`${styles.btn} ${isActive ? styles.active : ""} ${
+            className={`btn ${styles.btn} ${isActive ? styles.active : ""} ${
               isInactive ? styles.inactive : ""
             }`}
             key={key}

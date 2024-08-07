@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 
 import "../global.css";
 
+import { FcIdea } from "react-icons/fc";
+
 import HangmanDrawing from "./components/HangmanDrawing";
 import HangmanWord from "./components/HangmanWord";
 import Keyboard from "./components/Keyboard";
@@ -98,42 +100,48 @@ function App() {
   const inactiveLetters = incorrectLetters.concat(lettersRemoved);
 
   return (
-    <div className="max-w-[800px] flex flex-col gap-2 my-0 mx-auto items-center">
-      <div className="text-sm text-center m-2">
+    <div className="flex flex-col items-center">
+      {" "}
+      <div className="header text-sm text-center m-2">
         {!isWinner && !isLoser && "Hangman"}
         {isWinner && "Winner"}
         {isLoser && "Nice try!"}
+        <div className="settings">
+          <button onClick={newGame}>New game</button>
+        </div>
       </div>
-      <div>
-        {" "}
-        <button onClick={newGame}>New game</button>
-      </div>
-      <div>
-        <button
-          className="button"
-          disabled={isWinner || isLoser}
-          onClick={getALetter}
-          style={{}}
-        >
-          A correct letter
-        </button>
-      </div>
-
-      <HangmanDrawing numOfIncorrectGuesses={incorrectLetters.length} />
-      <HangmanWord
-        guessedLetters={guessedLetters}
-        wordToGuess={wordToGuess}
-        reveal={isLoser}
-      />
-      <div className="flex">
-        <Keyboard
-          activeLetter={guessedLetters.filter((letter) =>
-            wordToGuess.includes(letter)
-          )}
-          inactiveLetters={inactiveLetters}
-          addGuessedLetter={addGuessedLetter}
-          disabled={isWinner || isLoser}
-        />
+      <div className="flex justify-around w-full">
+        <div className="left max-w-[800px] flex flex-col gap-2 my-0 items-center justify-around h-screen">
+          <HangmanWord
+            guessedLetters={guessedLetters}
+            wordToGuess={wordToGuess}
+            reveal={isLoser}
+          />
+          <div className="">
+            <Keyboard
+              activeLetter={guessedLetters.filter((letter) =>
+                wordToGuess.includes(letter)
+              )}
+              inactiveLetters={inactiveLetters}
+              addGuessedLetter={addGuessedLetter}
+              disabled={isWinner || isLoser}
+            />
+          </div>
+        </div>
+        <div className="middle flex flex-col items-center justify-center">
+          <HangmanDrawing numOfIncorrectGuesses={incorrectLetters.length} />
+        </div>
+        <div className="right flex flex-col justify-center items-center">
+          <h1 className="font-bold">Hints</h1>
+          <FcIdea
+            className={`button shadow-xl mt-5 h-8 w-8 font-bold text-blue-400 cursor-pointer ${
+              isWinner || isLoser
+                ? "text-gray-400 cursor-not-allowed"
+                : "text-blue-400 cursor-pointer"
+            }`}
+            onClick={isWinner || isLoser ? undefined : getALetter}
+          />
+        </div>
       </div>
     </div>
   );
