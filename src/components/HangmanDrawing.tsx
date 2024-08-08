@@ -24,7 +24,7 @@ const HangmanDrawing = ({ numOfIncorrectGuesses }: HangmanDrawingProps) => {
   const imageSrc = images[numOfIncorrectGuesses];
 
   return (
-    <div className="flex flex-col items-center relative h-[500px] ml-10">
+    <div className="flex flex-col items-center relative h-[500px] ml-10 -z-10">
       <img
         src={imageSrc}
         alt={`Hangman stage ${numOfIncorrectGuesses}`}

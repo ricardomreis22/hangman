@@ -106,17 +106,20 @@ const Game = () => {
   const inactiveLetters = incorrectLetters.concat(lettersRemoved);
 
   function openModal() {
-    setisModalOpen(true);
+    setisModalOpen((prev) => !prev);
   }
 
   return (
     <div className="flex flex-col items-center w-[90%] m-auto h-screen">
-      {isModalOpen && <SettingsModal />}
-      <div className="header flex w-full justify-between text-sm text-center m-2">
+      <div className="header flew-full justify-between text-sm text-center m-2">
         {!isWinner && !isLoser && "Hangman"}
         {isWinner && "Winner"}
         {isLoser && "Nice try!"}
       </div>
+      <div className="fixed flex items-center justify-center h-screen">
+        {isModalOpen && <SettingsModal handleClick={openModal} />}
+      </div>
+
       <div className="flex justify-around h-[80%] w-full">
         <div className="left max-w-[800px] flex flex-col gap-2 my-0 items-center justify-end h-full">
           <HangmanWord

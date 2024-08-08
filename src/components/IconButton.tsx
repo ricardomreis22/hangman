@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 
 type IconButtonProps = {
-  icon: ReactNode;
+  icon?: ReactNode;
   handleClick?: () => void;
   className?: string;
 };

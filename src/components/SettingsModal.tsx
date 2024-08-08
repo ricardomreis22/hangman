@@ -1,13 +1,30 @@
 import React from "react";
 
-const SettingsModal = () => {
+import IconButton from "./IconButton";
+
+import { FaHome } from "react-icons/fa";
+import { VscDebugRestart } from "react-icons/vsc";
+import { IoMdClose } from "react-icons/io";
+
+interface ModalProps {
+  handleClick: () => void;
+}
+
+const SettingsModal: React.FC<ModalProps> = ({ handleClick }) => {
   // Styles for the modal (basic inline styling for simplicity)
 
   return (
-    <div className="fixed flex top-20 left-20 right-20 bottom-20 bg-green-400 p-1 justify-center items-center">
-      <h2>Settings</h2>
-      <p>Settings content goes here.</p>
-      <button>Close</button>
+    <div className="fixed flex flex-col items-center justify-around z-1000 w-[40%] h-[80%] overflow-auto bg-gray-500">
+      <IconButton
+        handleClick={handleClick}
+        className="z-10 absolute top-0 right-0"
+        icon={<IoMdClose />}
+      />
+      <h1 className="text-6xl">Options</h1>
+      <div className="flex w-full gap-32 justify-center">
+        <IconButton className="z-10" icon={<FaHome />} />
+        <IconButton className="z-10" icon={<VscDebugRestart />} />
+      </div>
     </div>
   );
 };
