@@ -6,6 +6,8 @@ import "../global.css";
 
 import { FcIdea } from "react-icons/fc";
 
+import { FaCirclePause } from "react-icons/fa6";
+
 import HangmanDrawing from "./components/HangmanDrawing";
 import HangmanWord from "./components/HangmanWord";
 import Keyboard from "./components/Keyboard";
@@ -100,24 +102,20 @@ function App() {
   const inactiveLetters = incorrectLetters.concat(lettersRemoved);
 
   return (
-    <div className="flex flex-col items-center">
-      {" "}
-      <div className="header text-sm text-center m-2">
+    <div className="flex flex-col items-center w-[90%] m-auto h-screen">
+      <div className="header flex w-full justify-between text-sm text-center m-2">
         {!isWinner && !isLoser && "Hangman"}
         {isWinner && "Winner"}
         {isLoser && "Nice try!"}
-        <div className="settings">
-          <button onClick={newGame}>New game</button>
-        </div>
       </div>
-      <div className="flex justify-around w-full">
-        <div className="left max-w-[800px] flex flex-col gap-2 my-0 items-center justify-around h-screen">
+      <div className="flex justify-around h-[80%] w-full">
+        <div className="left max-w-[800px] flex flex-col gap-2 my-0 items-center justify-end h-full">
           <HangmanWord
             guessedLetters={guessedLetters}
             wordToGuess={wordToGuess}
             reveal={isLoser}
           />
-          <div className="">
+          <div className="mt-40">
             <Keyboard
               activeLetter={guessedLetters.filter((letter) =>
                 wordToGuess.includes(letter)
@@ -128,19 +126,21 @@ function App() {
             />
           </div>
         </div>
-        <div className="middle flex flex-col items-center justify-center">
+        <div className="middle flex flex-col h-full justify-end">
           <HangmanDrawing numOfIncorrectGuesses={incorrectLetters.length} />
         </div>
-        <div className="right flex flex-col justify-center items-center">
-          <h1 className="font-bold">Hints</h1>
-          <FcIdea
-            className={`button shadow-xl mt-5 h-8 w-8 font-bold text-blue-400 cursor-pointer ${
-              isWinner || isLoser
-                ? "text-gray-400 cursor-not-allowed"
-                : "text-blue-400 cursor-pointer"
-            }`}
-            onClick={isWinner || isLoser ? undefined : getALetter}
-          />
+        <div className=" right flex flex-col justify-between h-full">
+          <FaCirclePause className="text-black text-8xl" />
+          <div className="p-5 border-[1px] border-black bg-black rounded-full">
+            <FcIdea
+              className={`button h-16 w-16 font-bold text-blue-400 cursor-pointer ${
+                isWinner || isLoser
+                  ? "text-gray-400 cursor-not-allowed"
+                  : "text-blue-400 cursor-pointer"
+              }`}
+              onClick={isWinner || isLoser ? undefined : getALetter}
+            />
+          </div>
         </div>
       </div>
     </div>

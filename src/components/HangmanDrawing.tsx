@@ -1,4 +1,3 @@
-import React from "react";
 import hangman0 from "../images/hangman0.svg";
 import hangman1 from "../images/hangman1.svg";
 import hangman2 from "../images/hangman2.svg";
@@ -25,7 +24,7 @@ const HangmanDrawing = ({ numOfIncorrectGuesses }: HangmanDrawingProps) => {
   const imageSrc = images[numOfIncorrectGuesses];
 
   return (
-    <div className="flex flex-col items-center relative h-[400px] ml-10">
+    <div className="flex flex-col items-center relative h-[500px] ml-10">
       <img
         src={imageSrc}
         alt={`Hangman stage ${numOfIncorrectGuesses}`}
