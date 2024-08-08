@@ -8,6 +8,7 @@ import "../global.css";
 import { FcIdea } from "react-icons/fc";
 import { CiSettings } from "react-icons/ci";
 
+import SettingsModal from "./components/SettingsModal";
 import HangmanDrawing from "./components/HangmanDrawing";
 import HangmanWord from "./components/HangmanWord";
 import Keyboard from "./components/Keyboard";
@@ -23,6 +24,8 @@ const Game = () => {
 
   // Track which letter we did guess
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+
+  const [isModalOpen, setisModalOpen] = useState<boolean>(false);
 
   const [lettersRemoved, setLettersRemoved] = useState<string[]>([]);
 
@@ -102,8 +105,13 @@ const Game = () => {
 
   const inactiveLetters = incorrectLetters.concat(lettersRemoved);
 
+  function openModal() {
+    setisModalOpen(true);
+  }
+
   return (
     <div className="flex flex-col items-center w-[90%] m-auto h-screen">
+      {isModalOpen && <SettingsModal />}
       <div className="header flex w-full justify-between text-sm text-center m-2">
         {!isWinner && !isLoser && "Hangman"}
         {isWinner && "Winner"}
@@ -131,19 +139,13 @@ const Game = () => {
           <HangmanDrawing numOfIncorrectGuesses={incorrectLetters.length} />
         </div>
         <div className=" right flex flex-col justify-between h-full">
-          <IconButton icon={<CiSettings />} />
+          <IconButton handleClick={openModal} icon={<CiSettings />} />
           <IconButton
             icon={<FcIdea />}
-            getALetter={isWinner || isLoser ? undefined : getALetter}
+            handleClick={isWinner || isLoser ? undefined : getALetter}
             className={
               isWinner || isLoser ? "cursor-not-allowed" : "cursor-pointer"
             }
-          />
-          <FcIdea
-            className={`button h-16 w-16 font-bold text-blue-400 cursor-pointer ${
-              isWinner || isLoser ? "cursor-not-allowed" : " cursor-pointer"
-            }`}
-            onClick={isWinner || isLoser ? undefined : getALetter}
           />
         </div>
       </div>

@@ -2,18 +2,18 @@ import React, { ReactNode } from "react";
 
 type IconButtonProps = {
   icon: ReactNode;
-  getALetter?: () => void;
+  handleClick?: () => void;
   className?: string;
 };
 
 const IconButton: React.FC<IconButtonProps> = ({
   icon,
-  getALetter,
+  handleClick,
   className,
 }) => {
   return (
     <button
-      onClick={getALetter}
+      onClick={handleClick}
       className={`button font-bold rounded-full text-7xl ${className}`}
     >
       {icon}
