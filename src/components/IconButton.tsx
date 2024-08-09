@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 
 type IconButtonProps = {
   icon?: ReactNode;
-  handleClick?: () => void;
+  handleClick?: React.Dispatch<React.SetStateAction<boolean>>;
   className?: string;
 };
 

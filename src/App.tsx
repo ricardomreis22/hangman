@@ -1,6 +1,9 @@
-import words from "./wordList.json";
+import { useState } from "react";
 
-import { useCallback, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
+
+// Create a context with a default value (optional)
+const MyContext = createContext < React.Dispatch<SetStateAction<boolean>>;
 
 import "../global.css";
 
@@ -13,7 +16,14 @@ function App() {
   if (homePage) {
     return <Homepage setHomePage={setHomePage} />;
   } else {
-    return <Game />;
+    return (
+      <>
+        <MyContext.Provider value={setHomePage}>
+          <Game />
+        </MyContext.Provider>
+        <Game setHomePage={setHomePage} />
+      </>
+    );
   }
 }
 

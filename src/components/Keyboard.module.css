@@ -17,6 +17,7 @@
 }
 .btn.inactive {
   opacity: 0.3;
+  z-index: -10;
 }
 .btn:hover:not(:disabled),
 .btn:focus:not(:disabled) {

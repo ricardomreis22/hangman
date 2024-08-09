@@ -14,7 +14,17 @@ import HangmanWord from "./components/HangmanWord";
 import Keyboard from "./components/Keyboard";
 import IconButton from "./components/IconButton";
 
-const Game = () => {
+import { createContext, useContext } from "react";
+
+type HomepageProps = {
+  setHomePage: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const MyContext = createContext<string | undefined>(undefined);
+
+const Game: React.FC<HomepageProps> = ({ setHomePage }) => {
+  const value = useContext(MyContext);
+  console.log(value);
   function getWord() {
     return words[Math.floor(Math.random() * words.length)];
   }
@@ -117,7 +127,13 @@ const Game = () => {
         {isLoser && "Nice try!"}
       </div>
       <div className="fixed flex items-center justify-center h-screen">
-        {isModalOpen && <SettingsModal handleClick={openModal} />}
+        {isModalOpen && (
+          <SettingsModal
+            handleClick={openModal}
+            newGame={newGame}
+            setHomePage={setHomePage}
+          />
+        )}
       </div>
 
       <div className="flex justify-around h-[80%] w-full">
