@@ -17,8 +17,6 @@ const SettingsModal: React.FC<ModalProps> = ({
   newGame,
   setHomePage,
 }) => {
-  // Styles for the modal (basic inline styling for simplicity)
-
   function restartWord() {
     handleClick();
     newGame();

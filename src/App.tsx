@@ -1,9 +1,6 @@
 import { useState } from "react";
 
-import { createContext, useContext } from "react";
-
 // Create a context with a default value (optional)
-const MyContext = createContext < React.Dispatch<SetStateAction<boolean>>;
 
 import "../global.css";
 
@@ -13,16 +10,22 @@ import Game from "./Game";
 function App() {
   const [homePage, setHomePage] = useState(true);
 
+  const [isModalOpen, setisModalOpen] = useState<boolean>(false);
   if (homePage) {
-    return <Homepage setHomePage={setHomePage} />;
+    return (
+      <Homepage
+        setisModalOpen={setisModalOpen}
+        setHomePage={setHomePage}
+        isModalOpen={isModalOpen}
+      />
+    );
   } else {
     return (
-      <>
-        <MyContext.Provider value={setHomePage}>
-          <Game />
-        </MyContext.Provider>
-        <Game setHomePage={setHomePage} />
-      </>
+      <Game
+        isModalOpen={isModalOpen}
+        setisModalOpen={setisModalOpen}
+        setHomePage={setHomePage}
+      />
     );
   }
 }

@@ -14,17 +14,17 @@ import HangmanWord from "./components/HangmanWord";
 import Keyboard from "./components/Keyboard";
 import IconButton from "./components/IconButton";
 
-import { createContext, useContext } from "react";
-
 type HomepageProps = {
   setHomePage: React.Dispatch<React.SetStateAction<boolean>>;
+  setisModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isModalOpen: boolean;
 };
 
-const MyContext = createContext<string | undefined>(undefined);
-
-const Game: React.FC<HomepageProps> = ({ setHomePage }) => {
-  const value = useContext(MyContext);
-  console.log(value);
+const Game: React.FC<HomepageProps> = ({
+  setHomePage,
+  setisModalOpen,
+  isModalOpen,
+}) => {
   function getWord() {
     return words[Math.floor(Math.random() * words.length)];
   }
@@ -34,8 +34,6 @@ const Game: React.FC<HomepageProps> = ({ setHomePage }) => {
 
   // Track which letter we did guess
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
-
-  const [isModalOpen, setisModalOpen] = useState<boolean>(false);
 
   const [lettersRemoved, setLettersRemoved] = useState<string[]>([]);
 
