@@ -1,38 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiSettings } from "react-icons/ci";
 import { IoMdPlay } from "react-icons/io";
 
 import IconButton from "./components/IconButton";
-import SettingsModal from "./components/SettingsModal";
+import Options from "./components/Options";
 
 type HomepageProps = {
   setHomePage: React.Dispatch<React.SetStateAction<boolean>>;
-  setisModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isModalOpen: boolean;
 };
 
-const Homepage: React.FC<HomepageProps> = ({
-  setHomePage,
-  setisModalOpen,
-  isModalOpen,
-}) => {
+const Homepage: React.FC<HomepageProps> = ({ setHomePage }) => {
+  const [options, setOptions] = useState(false);
   function startGame() {
-    setisModalOpen(false);
     setHomePage(false);
   }
 
-  function openModal() {
-    setisModalOpen(true);
+  function openOptions() {
+    console.log(options);
+    setOptions((prev) => !prev);
   }
 
   return (
     <div className="flex h-screen flex-col justify-around items-center">
+      {options ?? <Options handleClick={openOptions} />}
       <div className="flex items-center justify-center ">
         <h1 className="text-6xl">HANGMAN</h1>
         <IconButton
           icon={<CiSettings />}
           className="items-end text-6xl ml-20"
-          handleClick={() => openModal()}
+          handleClick={openOptions}
         />
       </div>
       <IconButton icon={<IoMdPlay />} handleClick={() => startGame()} />

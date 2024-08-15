@@ -16,15 +16,9 @@ import IconButton from "./components/IconButton";
 
 type HomepageProps = {
   setHomePage: React.Dispatch<React.SetStateAction<boolean>>;
-  setisModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isModalOpen: boolean;
 };
 
-const Game: React.FC<HomepageProps> = ({
-  setHomePage,
-  setisModalOpen,
-  isModalOpen,
-}) => {
+const Game: React.FC<HomepageProps> = ({ setHomePage }) => {
   function getWord() {
     return words[Math.floor(Math.random() * words.length)];
   }
@@ -36,6 +30,8 @@ const Game: React.FC<HomepageProps> = ({
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 
   const [lettersRemoved, setLettersRemoved] = useState<string[]>([]);
+
+  const [isModalOpen, setisModalOpen] = useState<boolean>(false);
 
   // Which letter we clicked was wrong (not in the word to guess)
   const incorrectLetters = guessedLetters.filter(
@@ -125,7 +121,7 @@ const Game: React.FC<HomepageProps> = ({
         {isLoser && "Nice try!"}
       </div>
       <div className="fixed flex items-center justify-center h-screen">
-        {isModalOpen && (
+        {isModalOpen ?? (
           <SettingsModal
             handleClick={openModal}
             newGame={newGame}

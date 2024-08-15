@@ -10,23 +10,10 @@ import Game from "./Game";
 function App() {
   const [homePage, setHomePage] = useState(true);
 
-  const [isModalOpen, setisModalOpen] = useState<boolean>(false);
   if (homePage) {
-    return (
-      <Homepage
-        setisModalOpen={setisModalOpen}
-        setHomePage={setHomePage}
-        isModalOpen={isModalOpen}
-      />
-    );
+    return <Homepage setHomePage={setHomePage} />;
   } else {
-    return (
-      <Game
-        isModalOpen={isModalOpen}
-        setisModalOpen={setisModalOpen}
-        setHomePage={setHomePage}
-      />
-    );
+    return <Game setHomePage={setHomePage} />;
   }
 }
 
